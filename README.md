@@ -24,7 +24,7 @@ The project is deployed at: [www.fullstackteam.org](http://www.fullstackteam.org
 - **Backend**: Node.js ve Express.js kullanılmıştır.
 - **Loglama**: Site, morgan modülü ile log tutmaktadır.
 - **Dosya Yükleme**: Multer modülü ile dosya yüklenmektedir.
-- **Swagger**: Swagger dokümantasyonu `fullstacktema.org/documents/swagger` adresindedir.
+- **Swagger**: Swagger dokümantasyonu `fullstackteam.org/documents/swagger` adresindedir.
 - **Şifre Kontrolü**: Middleware düzeyinde yapılmaktadır.
 - **Permissionlar**: Şu an aktif değildir ama yazılmıştır (disabled).
 - **Pagination**: Gerçek zamanlıdır, tüm veriler frontende yüklenip frontendde yapılmamaktadır, API'den parçalı çekilmektedir.
