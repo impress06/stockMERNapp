@@ -1,0 +1,1557 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": "",
+    "termsOfService": "http://fullstackteam.org/#",
+    "contact": {
+      "name": "",
+      "email": "mustafatelli@msn.com"
+    },
+    "license": {
+      "name": "ISC"
+    }
+  },
+  "host": "127.0.0.1:8000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/user/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List Users",
+        "description": "You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint. Examples: URL/?<b>filter[field1]=value1&filter[field2]=value2</b>, URL/?<b>search[field1]=value1&search[field2]=value2</b>, URL/?<b>sort[field1]=asc&sort[field2]=desc</b>, URL/?<b>limit=10&page=1</b>",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["filter[field1]=value1", "filter[field2]=value2"]
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["search[field1]=value1", "search[field2]=value2"]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["sort[field1]=asc", "sort[field2]=desc"]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@site.com"
+                },
+                "firstName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "test"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Single User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234Kure"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@site.com"
+                },
+                "firstName": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "test"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "205": {
+            "description": "Reset Content"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "<strong>Login with  username (or email) and password to get JWT or Simple Token. System also use cookie ..</strong>",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "test"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "1234"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/brand/": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "summary": "List Brands",
+        "description": "You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint. Examples: URL/?<b>filter[field1]=value1&filter[field2]=value2</b>, URL/?<b>search[field1]=value1&search[field2]=value2</b>, URL/?<b>sort[field1]=asc&sort[field2]=desc</b>, URL/?<b>limit=10&page=1</b>"
+        ,
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["filter[field1]=value1", "filter[field2]=value2"]
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["search[field1]=value1", "search[field2]=value2"]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["sort[field1]=asc", "sort[field2]=desc"]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Brands"
+        ],
+        "summary": "Create Brand",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "BrandName"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "http://example.com/image.jpg"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/brand/{id}": {
+      "get": {
+        "tags": [
+          "Brands"
+        ],
+        "summary": "Get Single Brand",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Brands"
+        ],
+        "summary": "Update Brand",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "BrandName"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "http://example.com/image.jpg"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Brands"
+        ],
+        "summary": "Delete Brand",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/firm/": {
+      "get": {
+        "tags": [
+          "Firms"
+        ],
+        "summary": "List Firms",
+        "description": "You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint. Examples: URL/?<b>filter[field1]=value1&filter[field2]=value2</b>, URL/?<b>search[field1]=value1&search[field2]=value2</b>, URL/?<b>sort[field1]=asc&sort[field2]=desc</b>, URL/?<b>limit=10&page=1</b>",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["filter[field1]=value1", "filter[field2]=value2"]
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["search[field1]=value1", "search[field2]=value2"]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["sort[field1]=asc", "sort[field2]=desc"]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Firms"
+        ],
+        "summary": "Create Firm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "FirmName"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+123456789"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "123 Firm St, City, Country"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "http://example.com/image.jpg"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/firm/{id}": {
+      "get": {
+        "tags": [
+          "Firms"
+        ],
+        "summary": "Get Single Firm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Firms"
+        ],
+        "summary": "Update Firm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "FirmName"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "+123456789"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "123 Firm St, City, Country"
+                },
+                "image": {
+                  "type": "string",
+                  "example": "http://example.com/image.jpg"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Firms"
+        ],
+        "summary": "Delete Firm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/sale/": {
+      "get": {
+        "tags": [
+          "Sales"
+        ],
+        "summary": "List Sales",
+        "description": "You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint. Examples: URL/?<b>filter[field1]=value1&filter[field2]=value2</b>, URL/?<b>search[field1]=value1&search[field2]=value2</b>, URL/?<b>sort[field1]=asc&sort[field2]=desc</b>, URL/?<b>limit=10&page=1</b>",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["filter[field1]=value1", "filter[field2]=value2"]
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["search[field1]=value1", "search[field2]=value2"]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["sort[field1]=asc", "sort[field2]=desc"]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Sales"
+        ],
+        "summary": "Create Sale",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "example": "UserID"
+                },
+                "productId": {
+                  "type": "string",
+                  "example": "ProductID"
+                },
+                "brandId": {
+                  "type": "string",
+                  "example": "BrandID"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 150.5
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 3
+                },
+                "priceTotal": {
+                  "type": "number",
+                  "example": 451.5
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/sale/{id}": {
+      "get": {
+        "tags": [
+          "Sales"
+        ],
+        "summary": "Get Single Sale",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Sales"
+        ],
+        "summary": "Update Sale",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "example": "UserID"
+                },
+                "productId": {
+                  "type": "string",
+                  "example": "ProductID"
+                },
+                "brandId": {
+                  "type": "string",
+                  "example": "BrandID"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 150.5
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 3
+                },
+                "priceTotal": {
+                  "type": "number",
+                  "example": 451.5
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Sales"
+        ],
+        "summary": "Delete Sale",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/category/": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "List Categories",
+        "description": "You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint. Examples: URL/?<b>filter[field1]=value1&filter[field2]=value2</b>, URL/?<b>search[field1]=value1&search[field2]=value2</b>, URL/?<b>sort[field1]=asc&sort[field2]=desc</b>, URL/?<b>limit=10&page=1</b>",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["filter[field1]=value1", "filter[field2]=value2"]
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["search[field1]=value1", "search[field2]=value2"]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["sort[field1]=asc", "sort[field2]=desc"]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "CategoryName"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/category/{id}": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get Single Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Update Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "CategoryName"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Delete Category",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/product/": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "List Products",
+        "description": "You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint. Examples: URL/?<b>filter[field1]=value1&filter[field2]=value2</b>, URL/?<b>search[field1]=value1&search[field2]=value2</b>, URL/?<b>sort[field1]=asc&sort[field2]=desc</b>, URL/?<b>limit=10&page=1</b>",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["filter[field1]=value1", "filter[field2]=value2"]
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["search[field1]=value1", "search[field2]=value2"]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["sort[field1]=asc", "sort[field2]=desc"]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Create Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "categoryId": {
+                  "type": "string",
+                  "example": "CategoryID"
+                },
+                "brandId": {
+                  "type": "string",
+                  "example": "BrandID"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "ProductName"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 10
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/product/{id}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get Single Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Update Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "categoryId": {
+                  "type": "string",
+                  "example": "CategoryID"
+                },
+                "brandId": {
+                  "type": "string",
+                  "example": "BrandID"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "ProductName"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 10
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Delete Product",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/purchase/": {
+      "get": {
+        "tags": [
+          "Purchases"
+        ],
+        "summary": "List Purchases",
+        "description": "You can use <u>filter[] & search[] & sort[] & page & limit</u> queries with endpoint. Examples: URL/?<b>filter[field1]=value1&filter[field2]=value2</b>, URL/?<b>search[field1]=value1&search[field2]=value2</b>, URL/?<b>sort[field1]=asc&sort[field2]=desc</b>, URL/?<b>limit=10&page=1</b>",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["filter[field1]=value1", "filter[field2]=value2"]
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["search[field1]=value1", "search[field2]=value2"]
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi",
+            "example": ["sort[field1]=asc", "sort[field2]=desc"]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "example": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Purchases"
+        ],
+        "summary": "Create Purchase",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "example": "UserID"
+                },
+                "firmId": {
+                  "type": "string",
+                  "example": "FirmID"
+                },
+                "productId": {
+                  "type": "string",
+                  "example": "ProductID"
+                },
+                "brandId": {
+                  "type": "string",
+                  "example": "BrandID"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 100.5
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 2
+                },
+                "priceTotal": {
+                  "type": "number",
+                  "example": 201.0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/purchase/{id}": {
+      "get": {
+        "tags": [
+          "Purchases"
+        ],
+        "summary": "Get Single Purchase",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Purchases"
+        ],
+        "summary": "Update Purchase",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "example": "UserID"
+                },
+                "firmId": {
+                  "type": "string",
+                  "example": "FirmID"
+                },
+                "productId": {
+                  "type": "string",
+                  "example": "ProductID"
+                },
+                "brandId": {
+                  "type": "string",
+                  "example": "BrandID"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 100.5
+                },
+                "quantity": {
+                  "type": "integer",
+                  "example": 2
+                },
+                "priceTotal": {
+                  "type": "number",
+                  "example": 201.0
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Purchases"
+        ],
+        "summary": "Delete Purchase",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "example": "test"
+        },
+        "password": {
+          "type": "string",
+          "example": "1234"
+        },
+        "email": {
+          "type": "string",
+          "example": "test@site.com"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "test"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "test"
+        },
+        "isActive": {
+          "type": "boolean",
+          "example": true
+        },
+        "isStaff": {
+          "type": "boolean",
+          "example": false
+        },
+        "isAdmin": {
+          "type": "boolean",
+          "example": false
+        }
+      }
+    },
+    "Brand": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "BrandName"
+        },
+        "image": {
+          "type": "string",
+          "example": "http://example.com/image.jpg"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "CategoryName"
+        }
+      }
+    },
+    "Firm": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "FirmName"
+        },
+        "phone": {
+          "type": "string",
+          "example": "+123456789"
+        },
+        "address": {
+          "type": "string",
+          "example": "123 Firm St, City, Country"
+        },
+        "image": {
+          "type": "string",
+          "example": "http://example.com/image.jpg"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "categoryId": {
+          "type": "string",
+          "example": "CategoryID"
+        },
+        "brandId": {
+          "type": "string",
+          "example": "BrandID"
+        },
+        "name": {
+          "type": "string",
+          "example": "ProductName"
+        },
+        "quantity": {
+          "type": "integer",
+          "example": 10
+        }
+      }
+    },
+    "Purchase": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "UserID"
+        },
+        "firmId": {
+          "type": "string",
+          "example": "FirmID"
+        },
+        "productId": {
+          "type": "string",
+          "example": "ProductID"
+        },
+        "brandId": {
+          "type": "string",
+          "example": "BrandID"
+        },
+        "price": {
+          "type": "number",
+          "example": 100.5
+        },
+        "quantity": {
+          "type": "integer",
+          "example": 2
+        },
+        "priceTotal": {
+          "type": "number",
+          "example": 201.0
+        }
+      }
+    },
+    "Sale": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "example": "UserID"
+        },
+        "productId": {
+          "type": "string",
+          "example": "ProductID"
+        },
+        "brandId": {
+          "type": "string",
+          "example": "BrandID"
+        },
+        "price": {
+          "type": "number",
+          "example": 150.5
+        },
+        "quantity": {
+          "type": "integer",
+          "example": 3
+        },
+        "priceTotal": {
+          "type": "number",
+          "example": 451.5
+        }
+      }
+    }
+  }
+}

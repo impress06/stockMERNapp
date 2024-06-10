@@ -1,0 +1,15 @@
+.notfound{
+    height: 100vh;
+    display: flex;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    
+}
+.notfoundMain{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: CENTER !important;
+    
+}
