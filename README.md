@@ -1,4 +1,6 @@
-# Proje Adı: MERN Stack Giriş Sistemi
+# Proje Adı: MERN Stack Stock Sistemi
+
+![Proje Demo](./demo.gif)
 
 ## Özellikler
 
