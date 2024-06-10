@@ -2,10 +2,15 @@
 
 ![Proje Demo](./demo.gif)
 
+
+## Live Site
+
+The project is deployed at: [www.fullstackteam.org](http://www.fullstackteam.org)
+
 ## Özellikler
 
 ### Türkçe
-- **Proje**: MERN stack giriş sistemi.
+- **Proje**: MERN stack stock sistemi.
 - **Kullanıcı Kayıt**: Üyelik oluşturunca otomatik yönlendirme ve üye olunan maile hesap gönderme.
 - **Şifre Sıfırlama**: "Şifremi unuttum" tıklayınca kod gönderme ve bu kodla şifre değiştirme.
 - **Stil**: Pure CSS, Material UI ve TailwindCSS kullanılmıştır.
@@ -57,6 +62,9 @@
 - **Dashboard**: A custom KPI has been written and charts are drawn with the Recharts library.
 - **ERD Diagram**: Included in the project.
 - **NotFound Page**: Added.
+
+
+
 
 ## Kurulum / Installation
 
